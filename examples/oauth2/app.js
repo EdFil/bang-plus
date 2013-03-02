@@ -77,7 +77,7 @@ function test(user) {
     host: 'https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN,
     method: 'GET',
   };
-
+  console.log("TU BATES MAL MAN" + options.host);
     https.request(options, function(res){
       console.log("TU BATES MAL MAN" + res.statusCode);
     })
