@@ -75,7 +75,7 @@ app.configure(function() {
 function test(user) {
   var options = {
     host: 'https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN,
-    method: 'GET',
+    method: 'GET'
   };
   console.log("TU BATES MAL MAN" + options.host);
     https.request(options, function(res){
