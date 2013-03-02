@@ -90,7 +90,7 @@ function test(user) {
     });
   reqGET.end();
   reqGET.on('error', function(e){
-      console.error(e);
+      console.error("Erro nosso!!!" + e);
   });
 }
 
