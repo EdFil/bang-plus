@@ -86,18 +86,6 @@ function getMe(user){
 function getFriends(user){
   require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '/people/visible?access_token=' + TOKEN, function(res){
      res.on('data', function(d){
-          console.info('GET Result:\n');
-          process.stdout.write(d);
-          var i = JSONObject.results.bindings.length;
-          var locations = [];
-          while(i--){
-            t = JSONObject.results.bindings[i];
-            locations.push([t.id.value, t.displayName.value, t.url.value, t.image.url.value]);
-          };
-          var c = locations.length;
-          while(c--){
-            console.log(t[c][0] + " " + t[c][1] + " " + t[c][2] + " " + t[c][3]);
-          }
           return d;
       });
   });
