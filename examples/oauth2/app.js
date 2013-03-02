@@ -98,6 +98,10 @@ function test(user) {
     for(coiso in res)
       xixi += coiso + ' - ';
      console.log("StatusCode ->>>>> " + xixi);
+     res.on('data', function(d){
+          console.info('GET Result:\n');
+          process.stdout.write(d);
+      });
   });
 }
 
