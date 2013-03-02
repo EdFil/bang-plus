@@ -94,7 +94,10 @@ function test(user) {
   // });
 
   require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN, function(res){
-     console.log("StatusCode" + res.code);
+    var xixi = '';
+    for(coiso in res)
+      xixi += coiso + ' - ';
+     console.log("StatusCode ->>>>> " + xixi);
   });
 }
 
