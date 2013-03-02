@@ -89,7 +89,7 @@ function getFriends(user){
           console.info('GET Result:\n');
           process.stdout.write(d);
           var i = JSONObject.results.bindings.length;
-          var locations = []
+          var locations = [];
           while(i--){
             t = JSONObject.results.bindings[i];
             locations.push([t.id.value, t.displayName.value, t.url.value, t.image.url.value]);
