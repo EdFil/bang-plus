@@ -88,7 +88,7 @@ function getFriends(user){
      res.on('data', function(d){
           console.info('GET Result:\n');
           process.stdout.write(d);
-          process.stdout.write("PUUUUUUUUUUU " + d.items[0].displayName);
+          process.stdout.write("PUUUUUUUUUUU " + JSON.parse(d));
           return d.items;
       });
   });
