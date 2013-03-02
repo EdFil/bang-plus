@@ -8,7 +8,7 @@ var express = require('express')
 // https://code.google.com/apis/console/
 var GOOGLE_CLIENT_ID = "89914224518.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET = "Ixp5Lb7nL3S01nVNWfPGgMMJ";
-
+var TOKEN;
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -37,7 +37,7 @@ passport.use(new GoogleStrategy({
     callbackURL: url + "/oauth2callback"
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log("TOKEN!!!" + accessToken);
+    TOKEN = accessToken;
     // asynchronous verification, for effect...
     process.nextTick(function () {
 
@@ -74,10 +74,14 @@ app.configure(function() {
 
 function test(user) {
   var options = {
-    host: 'https://www.googleapis.com/plus/v1/people/' + user.id,
+    host: 'https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN,
     method: 'GET',
   };
-} 
+
+    https.request(options, function(res){
+      console.log("TU BATES MAL MAN" + res.statusCode);
+    })
+}
 
 app.get('/', function(req, res){
   if(req.user)
@@ -114,11 +118,7 @@ app.get('/auth/google',
 app.get('/oauth2callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-      var xixi;
-      xixi += req.secret + "\n";
-      xixi += req.user + "\n";
-      xixi += req.account + "\n";
-      console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOO\n" + xixi);
+
     res.redirect('/');
   });
 
