@@ -118,7 +118,6 @@ app.get('/auth/google',
 app.get('/oauth2callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-
     res.redirect('/');
   });
 
