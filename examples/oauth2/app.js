@@ -77,12 +77,15 @@ function test(user) {
     method: 'GET',
   };
 
-  console.log("VAI AGORA CRL!");
-  https.request(options, function(res){
-    console.log("--------------------------CA DENTRO-----------------------------");
-    console.log("statusCode: ", res.url);
-  });
-  console.log("ACABOU!");
+  app.get('https://www.googleapis.com/plus/v1/people/' + user.id ,
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function(req, res) {
+      var xixi;
+      for(coiso in res)
+        xixi += coiso + ' - ';
+      console.log(xixi);
+      res.redirect('/');
+    });
 
 }
 
@@ -121,10 +124,6 @@ app.get('/auth/google',
 app.get('/oauth2callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-  var xixi;
-  for(coiso in res)
-    xixi += coiso + ' - ';
-  console.log(xixi);
     res.redirect('/');
   });
 
