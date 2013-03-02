@@ -120,11 +120,11 @@ app.get('/auth/google',
 //   which, in this example, will redirect the user to the home page.
 app.get('/oauth2callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
   var xixi;
   for(coiso in res)
     xixi += coiso ' - ';
   console.log(xixi);
-  function(req, res) {
     res.redirect('/');
   });
 
