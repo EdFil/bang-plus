@@ -73,25 +73,45 @@ app.configure(function() {
   app.use(express.static(__dirname + '/public'));
 });
 
-function test(user) {
-  // require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN, function(res){
-  //    res.on('data', function(d){
-  //         console.info('GET Result:\n');
-  //         process.stdout.write(d);
-  //     });
-  // });
-require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '/people/visible?access_token=' + TOKEN, function(res){
+function getMe(){
+  require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN, function(res){
      res.on('data', function(d){
-          console.info('GET Result:\n');
-          process.stdout.write(d);
+      return d.id;
+          // console.info('GET Result:\n');
+          // process.stdout.write(d);
       });
   });
 }
 
+function getFriends(){
+  require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '/people/visible?access_token=' + TOKEN, function(res){
+     res.on('data', function(d){
+          return d;
+      });
+  });
+}
+
+function checkUser(id){
+  for(user in users){
+    if(user.id == id)
+      return user;
+  }
+  var newUser = {id:id, bangs:[]};
+  users.push(newUser);
+  return newUser;
+}
+
+function login(user) {
+  var id = getMe();
+  checkUser(id);
+  return getFriends();
+}
+
 app.get('/', function(req, res){
+  var friends = null;
   if(req.user)
-    test(req.user);
-  res.render('index', { user: req.user });
+    friends = login(req.user);
+  res.render('index', { user: friends });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
