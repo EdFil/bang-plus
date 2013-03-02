@@ -9,6 +9,7 @@ var express = require('express')
 var GOOGLE_CLIENT_ID = "89914224518.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET = "Ixp5Lb7nL3S01nVNWfPGgMMJ";
 var TOKEN;
+var users = [];
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
@@ -73,31 +74,13 @@ app.configure(function() {
 });
 
 function test(user) {
-  // var options = {
-  //   host: 'www.googleapis.com/plus/v1/',
-  //   path: 'people/' + user.id + '?access_token=' + TOKEN,
-  //   //port: 443,
-  //   method: 'GET'
-  // };
-  // console.log("TU BATES MAL MAN" + options.host);
-
-  // var reqGET = https.request(options, function(res){
-  //     console.log("StatusCode" + res.code);
-  //     res.on('data', function(d){
+  // require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN, function(res){
+  //    res.on('data', function(d){
   //         console.info('GET Result:\n');
   //         process.stdout.write(d);
   //     });
-  //   });
-  // reqGET.end();
-  // reqGET.on('error', function(e){
-  //     console.error("Erro nosso!!!" + e);
   // });
-
-  require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN, function(res){
-    var xixi = '';
-    for(coiso in res)
-      xixi += coiso + ' - ';
-     console.log("StatusCode ->>>>> " + xixi);
+require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '/people/visible?access_token=' + TOKEN, function(res){
      res.on('data', function(d){
           console.info('GET Result:\n');
           process.stdout.write(d);
