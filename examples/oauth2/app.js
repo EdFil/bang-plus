@@ -74,13 +74,24 @@ app.configure(function() {
 
 function test(user) {
   var options = {
-    host: 'www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN,
+    host: 'www.googleapis.com/plus/v1/',
+    path: 'people/' + user.id + '?access_token=' + TOKEN,
+    port: 443,
     method: 'GET'
   };
   console.log("TU BATES MAL MAN" + options.host);
-    https.request(options, function(res){
-      console.log("TU BATES MAL MAN" + res.code);
-    })
+
+  var reqGET = https.request(options, function(res){
+      console.log("StatusCode" + res.code);
+      res.on('data', function(d){
+          console.info('GET Result:\n');
+          process.stdout.write(d);
+      });
+    });
+  reqGET.end();
+  reqGET.on('error', function(e){
+      console.error(e);
+  });
 }
 
 app.get('/', function(req, res){
