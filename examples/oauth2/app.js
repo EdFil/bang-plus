@@ -73,7 +73,7 @@ app.configure(function() {
   app.use(express.static(__dirname + '/public'));
 });
 
-function getMe(){
+function getMe(user){
   require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN, function(res){
      res.on('data', function(d){
       return d.id;
@@ -83,7 +83,7 @@ function getMe(){
   });
 }
 
-function getFriends(){
+function getFriends(user){
   require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '/people/visible?access_token=' + TOKEN, function(res){
      res.on('data', function(d){
           return d;
@@ -102,9 +102,9 @@ function checkUser(id){
 }
 
 function login(user) {
-  var id = getMe();
+  var id = getMe(user);
   checkUser(id);
-  return getFriends();
+  return getFriends(user);
 }
 
 app.get('/', function(req, res){
