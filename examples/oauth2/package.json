@@ -1,10 +1,17 @@
 {
   "name": "passport-google-oauth-examples-oauth2",
-  "version": "0.0.0",
+  "version": "0.0.0-4",
   "dependencies": {
     "express": ">= 0.0.0",
     "ejs": ">= 0.0.0",
     "passport": ">= 0.0.0",
     "passport-google-oauth": ">= 0.0.0"
+  },
+  "subdomain": "jfloff.oauth2",
+  "scripts": {
+    "start": "app.js"
+  },
+  "engines": {
+    "node": "0.8.x"
   }
 }
