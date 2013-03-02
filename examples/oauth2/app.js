@@ -88,8 +88,7 @@ function getFriends(user){
      res.on('data', function(d){
           console.info('GET Result:\n');
           process.stdout.write(d);
-          for(item in d.items)
-            process.stdout.write(item);
+          process.stdout.write("PUUUUUUUUUUU " + d.items[0].displayName);
           return d.items;
       });
   });
@@ -144,7 +143,7 @@ app.get('/auth/google',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/oauth2callback', 
+app.get('/oauth2callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
     res.redirect('/');
