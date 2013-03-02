@@ -37,6 +37,7 @@ passport.use(new GoogleStrategy({
     callbackURL: url + "/oauth2callback"
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log("TOKEN!!!" + accessToken);
     // asynchronous verification, for effect...
     process.nextTick(function () {
 
@@ -116,7 +117,8 @@ app.get('/oauth2callback',
       var xixi;
       xixi += req.secret + "\n";
       xixi += req.user + "\n";
-      console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOO" + xixi);
+      xixi += req.account + "\n";
+      console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOO\n" + xixi);
     res.redirect('/');
   });
 
