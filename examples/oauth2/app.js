@@ -76,17 +76,6 @@ function test(user) {
     host: 'https://www.googleapis.com/plus/v1/people/' + user.id,
     method: 'GET',
   };
-
-  app.get('https://www.googleapis.com/plus/v1/people/' + user.id ,
-    passport.authenticate('google', { failureRedirect: '/login' }),
-    function(req, res) {
-      var xixi;
-      for(coiso in res)
-        xixi += "OOOOOOOOOOOOOOOOOOOOOOOOOOOO" + coiso + ' - ';
-      console.log(xixi);
-  //    res.redirect('/');
-    });
-
 }
 
 app.get('/', function(req, res){
@@ -121,9 +110,13 @@ app.get('/auth/google',
 //   request.  If authentication fails, the user will be redirected back to the
 //   login page.  Otherwise, the primary route function function will be called,
 //   which, in this example, will redirect the user to the home page.
-app.get('/oauth2callback',
+app.get('/oauth2callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
+      var xixi;
+      for(coiso in req)
+        xixi += "OOOOOOOOOOOOOOOOOOOOOOOOOOOO" + coiso + ' - ';
+      console.log(xixi);
     res.redirect('/');
   });
 
