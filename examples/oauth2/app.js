@@ -24,7 +24,7 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-var url = 'https://localhost:3000';
+var url = 'https://jfloff.oauth2.nodejitsu.com';
 
 // Use the GoogleStrategy within Passport.
 //   Strategies in Passport require a `verify` function, which accept
