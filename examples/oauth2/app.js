@@ -86,9 +86,9 @@ function test(user) {
 }
 
 app.get('/', function(req, res){
+  res.render('index', { user: req.user });
   if(req.user)
     test(req.user);
-  res.render('index', { user: req.user });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
