@@ -108,9 +108,13 @@ function login(user) {
 }
 
 app.get('/', function(req, res){
-  var friends = {};
-  if(req.user)
+  var friends = null;
+  if(req.user){
     friends = login(req.user);
+      for(user in friends)
+        console.log("XIXI MALUCO " + user.id);
+  }
+
   res.render('index', { user: friends });
 });
 
