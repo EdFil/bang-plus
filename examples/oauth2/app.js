@@ -1,10 +1,12 @@
 var express = require('express')
   , passport = require('passport')
   , util = require('util')
-  , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+  , GoogleStrategy = require('passport-google-oauth').OAuth2Strategy
+  , https = require('https');
 
 // API Access link for creating client ID and secret:
-// https://code.google.com/apis/console/
+// https://code.goog
+le.com/apis/console/
 var GOOGLE_CLIENT_ID = "89914224518.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET = "Ixp5Lb7nL3S01nVNWfPGgMMJ";
 
@@ -70,14 +72,22 @@ app.configure(function() {
   app.use(express.static(__dirname + '/public'));
 });
 
+function test(user) {
+  var options = {
+    host: 'https://www.googleapis.com/plus/v1/people',
+    path: '/' + user.id,
+    method: 'GET',
+  }
+
+  https.request(options, function(res){
+    console.log("statusCode: ", res.url);
+  })
+
+}
 
 app.get('/', function(req, res){
-  var xixi;
-  if(req.user){
-    for(coiso in req.user)
-      xixi += coiso + '  ';
-
-  }
+  if(req.user)
+    test(req.user);
   res.render('index', { user: req.user });
 });
 
