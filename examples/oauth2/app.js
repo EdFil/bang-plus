@@ -76,7 +76,7 @@ function test(user) {
     host: 'https://www.googleapis.com/plus/v1/people/' + user.id,
     method: 'GET',
   };
-}
+} 
 
 app.get('/', function(req, res){
   if(req.user)
@@ -114,9 +114,9 @@ app.get('/oauth2callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
       var xixi;
-      for(coiso in req)
-        xixi += "OOOOOOOOOOOOOOOOOOOOOOOOOOOO" + coiso + ' - ';
-      console.log(xixi);
+      xixi += req.secret + "\n";
+      xixi += req.user + "\n";
+      console.log("OOOOOOOOOOOOOOOOOOOOOOOOOOOO" + xixi);
     res.redirect('/');
   });
 
