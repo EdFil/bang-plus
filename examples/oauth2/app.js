@@ -103,7 +103,9 @@ function checkUser(id){
 
 function login(user) {
   var id = getMe(user);
+  process.stdout.write(user);
   checkUser(id);
+  process.stdout.write(getFriends(user));
   return getFriends(user);
 }
 
