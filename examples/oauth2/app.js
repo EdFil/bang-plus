@@ -93,7 +93,7 @@ function test(user) {
   //     console.error("Erro nosso!!!" + e);
   // });
 
-  require('http').get('https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN, function(res){
+  require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN, function(res){
      console.log("StatusCode" + res.code);
   });
 }
