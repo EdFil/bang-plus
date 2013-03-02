@@ -108,7 +108,7 @@ function login(user) {
 }
 
 app.get('/', function(req, res){
-  var friends = [];
+  var friends = null;
   if(req.user)
     friends = login(req.user);
   res.render('index', { user: friends });
