@@ -77,8 +77,8 @@ function getMe(user){
   require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '?access_token=' + TOKEN, function(res){
      res.on('data', function(d){
       return d.id;
-          // console.info('GET Result:\n');
-          // process.stdout.write(d);
+          console.info('GET Result:\n');
+          process.stdout.write(d);
       });
   });
 }
@@ -86,6 +86,8 @@ function getMe(user){
 function getFriends(user){
   require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '/people/visible?access_token=' + TOKEN, function(res){
      res.on('data', function(d){
+          console.info('GET Result:\n');
+          process.stdout.write(d);
           return d;
       });
   });
@@ -103,9 +105,7 @@ function checkUser(id){
 
 function login(user) {
   var id = getMe(user);
-  //process.stdout.write(user);
   checkUser(id);
-  process.stdout.write(getFriends(user));
   return getFriends(user);
 }
 
