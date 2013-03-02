@@ -87,8 +87,8 @@ function getFriends(user){
   require('https').get('https://www.googleapis.com/plus/v1/people/' + user.id + '/people/visible?access_token=' + TOKEN, function(res){
      res.on('data', function(d){
            console.info('GET Result:\n');
-          process.stdout.write(d);
-          return d;
+          process.stdout.write(d.items);
+          return d.items;
       });
   });
 }
