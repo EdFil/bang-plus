@@ -72,7 +72,13 @@ app.configure(function() {
 
 
 app.get('/', function(req, res){
-  res.render('index', { user: req.user });
+  var xixi;
+  if(req.user){
+    for(coiso in req.user)
+      xixi += coiso + '  ';
+
+  }
+  res.render('index', { user: xixi });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
