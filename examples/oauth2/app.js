@@ -78,7 +78,7 @@ app.get('/', function(req, res){
       xixi += coiso + '  ';
 
   }
-  res.render('index', { user: xixi });
+  res.render('index', { user: req.user });
 });
 
 app.get('/account', ensureAuthenticated, function(req, res){
