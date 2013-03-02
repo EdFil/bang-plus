@@ -123,7 +123,7 @@ app.get('/oauth2callback',
   function(req, res) {
   var xixi;
   for(coiso in res)
-    xixi += coiso ' - ';
+    xixi += coiso + ' - ';
   console.log(xixi);
     res.redirect('/');
   });
