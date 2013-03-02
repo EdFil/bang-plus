@@ -79,6 +79,7 @@ function test(user) {
 
   console.log("VAI AGORA CRL!");
   https.request(options, function(res){
+    console.log("--------------------------CA DENTRO-----------------------------");
     console.log("statusCode: ", res.url);
   });
   console.log("ACABOU!");
