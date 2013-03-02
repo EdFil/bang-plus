@@ -73,14 +73,15 @@ app.configure(function() {
 
 function test(user) {
   var options = {
-    host: 'https://www.googleapis.com/plus/v1/people',
-    path: '/' + user.id,
+    host: 'https://www.googleapis.com/plus/v1/people/' + user.id,
     method: 'GET',
   };
 
+  console.log("VAI AGORA CRL!");
   https.request(options, function(res){
     console.log("statusCode: ", res.url);
   });
+  console.log("ACABOU!");
 
 }
 
